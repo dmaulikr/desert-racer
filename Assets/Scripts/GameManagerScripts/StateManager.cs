@@ -40,4 +40,10 @@ public class StateManager : UnityEngine.MonoBehaviour {
   public void ExitGameMode() {
     Destroy(playerInputScript);
   }
+
+  // Exits the game. Note that if this is ever built for iOS, I'd want to
+  // disable this functionality, as the user manages closing apps in iOS.
+  public void QuitGame() {
+    Application.Quit();
+  }
 }
