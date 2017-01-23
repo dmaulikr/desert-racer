@@ -14,12 +14,10 @@ public class Init : UnityEngine.MonoBehaviour {
   // clicks "New Game," which would kick off these things.
   void Awake() {
     store = this.gameObject.GetComponent<Store>();
-    playerGameObject = GameObject.Find("Car");
-
-    this.CreateNewGame();
+    playerGameObject = GameObject.Find("Player");
   }
 
-  void CreateNewGame() {
+  public void CreateNewGame() {
     // Create our Player object
     // First, we need to get the player's width from its sprite.
     SpriteRenderer playerRenderer = playerGameObject.GetComponent<SpriteRenderer>();

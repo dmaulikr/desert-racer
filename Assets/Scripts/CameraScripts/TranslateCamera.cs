@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class TranslateCamera : UnityEngine.MonoBehaviour {
-  public Transform player;
-
   // The time it takes the elevator to transition between the MainMenu
   // and the GamePlay states.
   float transitionDuration = 2f;
@@ -24,16 +22,11 @@ public class TranslateCamera : UnityEngine.MonoBehaviour {
     {"GamePlay", 0f}
   };
 
-  void Start() {
-    this.player = GameObject.Find("Car").transform;
-  }
-
   // This actually performs the translation, and handles what happens immediately after the translation.
-  IEnumerator TransitionCamera(string location) {
+  public IEnumerator TransitionCamera(string location) {
     float endY = yPosition[location];
     Vector3 destination =  new Vector3(transform.position.x, endY, transform.position.z);
     yield return new Vector3Transition(gameObject, destination, transitionDuration, easingFunction);
-
 
     if (location == "GamePlay") {
       FollowPlayer();
@@ -49,25 +42,10 @@ public class TranslateCamera : UnityEngine.MonoBehaviour {
   // Attaches the FollowPlayer script to the camera, which makes it track the player's x-coordinates
   void FollowPlayer() {
     followPlayerScript = gameObject.AddComponent<FollowPlayer>() as FollowPlayer;
-    Debug.Log("AHHH IM FOLLOWING THE PLAYER");
   }
 
   // Removes the FollowPlayer script from the camera, so that it stops tracking the player's x-coordinates
   void StopFollowingPlayer() {
     Destroy(followPlayerScript);
-    Debug.Log("AHHH IM NOT FOLLOWING THE PLAYER");
-  }
-
-  // The main menu is in the "sky" in the game world. This translates
-  // the camera up.
-  public void MoveToMainMenu() {
-    StopCoroutine("TransitionCamera");
-    StartCoroutine(TransitionCamera("MainMenu"));
-  }
-
-  // The game play is beneath the menu, so this translates the camera down.
-  public void MoveToGamePlay() {
-    StopCoroutine("TransitionCamera");
-    StartCoroutine(TransitionCamera("GamePlay"));
   }
 }

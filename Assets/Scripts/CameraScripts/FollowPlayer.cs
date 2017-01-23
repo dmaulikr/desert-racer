@@ -8,7 +8,7 @@ public class FollowPlayer : UnityEngine.MonoBehaviour {
   public Transform target;
 
   void Start() {
-    target = GameObject.Find("Car").transform;
+    target = GameObject.Find("Player").transform;
   }
 
   void Update() {
