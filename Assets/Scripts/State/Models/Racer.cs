@@ -64,7 +64,6 @@ public class Racer {
     this.speed = speed;
     this.nextLane = nextLane;
     this.width = width;
-    Debug.Log(string.Format("Got a width: {0}", width));
   }
 
   // Direction can be one of "up" or "down". This begins the process of changing the lane.

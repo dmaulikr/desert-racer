@@ -3,7 +3,6 @@
 // This controls a "Racer" object through player input. It's attached
 // to the GameObject that displays the player's character.
 public class PlayerInput : UnityEngine.MonoBehaviour {
-  public GameObject storeObject;
   protected Store store;
   protected Racer racer;
 
@@ -14,7 +13,8 @@ public class PlayerInput : UnityEngine.MonoBehaviour {
   //  float changeLaneTime = 500;
 
   void Start() {
-    this.store = storeObject.GetComponent<Store>();
+    Debug.Log("Starting");
+    this.store = GameObject.Find("_State").GetComponent<Store>();
     this.racer = this.store.player;
 
     this.velocity = new Vector3(this.racer.speed, 0, 0);

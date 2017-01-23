@@ -7,6 +7,10 @@
 public class FollowPlayer : UnityEngine.MonoBehaviour {
   public Transform target;
 
+  void Start() {
+    target = GameObject.Find("Player").transform;
+  }
+
   void Update() {
     // Lock the camera to the player
     this.transform.position = new Vector3(target.position.x, this.transform.position.y, this.transform.position.z);
